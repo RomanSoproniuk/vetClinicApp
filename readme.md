@@ -11,4 +11,5 @@
 10. Unit testing of service level and repository was conducted.
 11. Integration testing was carried out from the controller level.
 12. Swagger - OpenAPI as documentation has been added.
+13. Configure ci.yml file and add to GitHub in repository Secrets
 **Roman Soproniuk (c)**
