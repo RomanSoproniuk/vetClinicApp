@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-animals-table
+      author: RomanSoproniuk
+      changes:
+        - createTable:
+            tableName: animals
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sex
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cost
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: categories_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: categories.id
+                    nullable: false

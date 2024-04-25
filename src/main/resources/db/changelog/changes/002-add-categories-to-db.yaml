@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-categories-to-db
+      author: RomanSoproniuk
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: type_category
+                  value: "FIRST"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: type_category
+                  value: "SECOND"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: "3"
+              - column:
+                  name: type_category
+                  value: "THIRD"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: "4"
+              - column:
+                  name: type_category
+                  value: "FOURTH"
