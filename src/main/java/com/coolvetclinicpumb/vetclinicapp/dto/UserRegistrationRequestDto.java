@@ -27,9 +27,6 @@ public class UserRegistrationRequestDto {
     @Size(min = 8, max = 20)
     private String repeatPassword;
 
-    public UserRegistrationRequestDto() {
-    }
-
     public UserRegistrationRequestDto(
             String email,
             String firstName,

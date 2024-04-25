@@ -25,6 +25,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
+    private static Long userId;
+    private static RoleRequestDto roleRequestDto;
+    private static Role userRole;
+    private static Role roleForUpdate;
+    private static String encodedPassword;
+    private static String rawPassword;
+    private static UserRegistrationRequestDto userRegistrationRequestDto;
+    private static UserResponseDto userResponseDto;
+    private static User user;
     @Mock
     private UserRepository userRepository;
     @Mock
@@ -37,15 +46,6 @@ public class UserServiceTest {
     private BCryptPasswordEncoder passwordEncoder;
     @InjectMocks
     private UserServiceImpl userService;
-    private static Long userId;
-    private static RoleRequestDto roleRequestDto;
-    private static Role userRole;
-    private static Role roleForUpdate;
-    private static String encodedPassword;
-    private static String rawPassword;
-    private static UserRegistrationRequestDto userRegistrationRequestDto;
-    private static UserResponseDto userResponseDto;
-    private static User user;
 
     @BeforeAll
     static void setUp() {

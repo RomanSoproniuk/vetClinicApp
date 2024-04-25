@@ -38,7 +38,6 @@ public class AuthenticationController {
             to understand how to work with the token returned to you in response, please refer
              to the official documentation
             """)
-
     public UserLoginResponseDto login(@RequestBody UserLoginRequestDto userLoginRequestDto) {
         return authenticationService.authenticate(userLoginRequestDto);
     }

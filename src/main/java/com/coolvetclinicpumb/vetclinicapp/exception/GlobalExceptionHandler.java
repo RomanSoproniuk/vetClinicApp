@@ -18,7 +18,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({EntityNotFoundException.class,
             FileFormatNotSupported.class,
             IOException.class,
-            JAXBException.class})
+            JAXBException.class,
+            FileIsEmptyException.class})
     public ResponseEntity<Object> handleException(Exception ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         HttpStatus notFound = HttpStatus.BAD_REQUEST;

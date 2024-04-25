@@ -22,23 +22,11 @@
 		<cost>59</cost>
 	</animal>
 	<animal>
-		<type>dog</type>
-		<sex>male</sex>
-		<weight>9</weight>
-		<cost>67</cost>
-	</animal>
-	<animal>
 		<name>Simba</name>
 		<type>dog</type>
 		<sex>male</sex>
 		<weight>14</weight>
 		<cost>57</cost>
-	</animal>
-	<animal>
-		<name>Nala</name>
-		<type>cat</type>
-		<sex>male</sex>
-		<weight>31</weight>
 	</animal>
 	<animal>
 		<name>Toby</name>
@@ -53,12 +41,6 @@
 		<sex>female</sex>
 		<weight>10</weight>
 		<cost>44</cost>
-	</animal>
-	<animal>
-		<name>Jack</name>
-		<type>cat</type>
-		<sex>female</sex>
-		<cost>12</cost>
 	</animal>
 	<animal>
 		<name>Zoe</name>

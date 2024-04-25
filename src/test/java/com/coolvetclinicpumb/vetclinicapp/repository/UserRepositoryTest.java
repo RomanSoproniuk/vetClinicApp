@@ -1,8 +1,8 @@
-package mainpackage.carsharingapp.repository;
+package com.coolvetclinicpumb.vetclinicapp.repository;
 
+import com.coolvetclinicpumb.vetclinicapp.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.Optional;
-import mainpackage.carsharingapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

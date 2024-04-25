@@ -3,6 +3,7 @@ package com.coolvetclinicpumb.vetclinicapp.service.implementations;
 import com.coolvetclinicpumb.vetclinicapp.dto.AnimalResponseDto;
 import com.coolvetclinicpumb.vetclinicapp.dto.AnimalSearchParameters;
 import com.coolvetclinicpumb.vetclinicapp.exception.FileFormatNotSupported;
+import com.coolvetclinicpumb.vetclinicapp.exception.FileIsEmptyException;
 import com.coolvetclinicpumb.vetclinicapp.mapper.AnimalMapper;
 import com.coolvetclinicpumb.vetclinicapp.model.Animal;
 import com.coolvetclinicpumb.vetclinicapp.model.Category;
@@ -36,28 +37,31 @@ public class AnimalServiceImpl implements AnimalService {
     private static final byte ZERO_PRICE = 0;
     private static final byte MINIMAL_WEIGHT = 1;
     private static final byte MINIMAL_LENGTH_SIZE_FOR_PARAMS = 2;
+    private static final String CSV_FORMAT_FILE = "text/csv";
+    private static final String XML_FORMAT_FILE = "application/xml";
     private final CsvHandleService csvHandleService;
-    private final CategoryRepository categoryRepository;
-    private final AnimalRepository animalRepository;
     private final XmlHandleService xmlHandleService;
     private final AnimalMapper animalMapper;
     private final AnimalSpecificationBuilder animalSpecificationBuilder;
+    private final CategoryRepository categoryRepository;
+    private final AnimalRepository animalRepository;
 
     @Override
     public ResponseEntity<?> saveAnimals(MultipartFile file) throws IOException, JAXBException {
         if (file.isEmpty()) {
-            return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new FileIsEmptyException("The file is empty"),
+                    HttpStatus.BAD_REQUEST);
         }
         String contentType = file.getContentType();
-        if (contentType != null && contentType.equals("text/csv")) {
+        if (contentType != null && contentType.equals(CSV_FORMAT_FILE)) {
             List<Animal> animals = csvHandleService.handleCsvFileWithAnimals(file);
-            validateAndSaveAnimalsToDb(animals);
-            return new ResponseEntity<>("CSV file uploaded successfully", HttpStatus.OK);
+            List<Animal> savedAnimals = validateAndSaveAnimalsToDb(animals);
+            return new ResponseEntity<>(savedAnimals, HttpStatus.OK);
         }
-        if (contentType != null && contentType.equals("application/xml")) {
+        if (contentType != null && contentType.equals(XML_FORMAT_FILE)) {
             List<Animal> animals = xmlHandleService.handleXmlFileWithAnimal(file);
-            validateAndSaveAnimalsToDb(animals);
-            return new ResponseEntity<>("XML file uploaded successfully", HttpStatus.OK);
+            List<Animal> savedAnimals = validateAndSaveAnimalsToDb(animals);
+            return new ResponseEntity<>(savedAnimals, HttpStatus.OK);
         }
         throw new FileFormatNotSupported("This file format is not yet supported for reading");
     }
@@ -73,7 +77,7 @@ public class AnimalServiceImpl implements AnimalService {
                 .toList();
     }
 
-    private void validateAndSaveAnimalsToDb(List<Animal> animals) {
+    private List<Animal> validateAndSaveAnimalsToDb(List<Animal> animals) {
         List<Category> allCategoryFromDb = categoryRepository.findAll();
         List<Animal> filterAnimals = animals.stream()
                 .filter(animal -> ((animal.getName() != null
@@ -96,6 +100,6 @@ public class AnimalServiceImpl implements AnimalService {
                     return animal;
                 })
                 .toList();
-        animalRepository.saveAll(filterAnimals);
+        return animalRepository.saveAll(filterAnimals);
     }
 }

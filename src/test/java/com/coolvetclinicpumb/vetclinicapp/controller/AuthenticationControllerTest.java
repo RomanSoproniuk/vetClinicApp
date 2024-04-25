@@ -1,14 +1,14 @@
-package mainpackage.carsharingapp.controller;
+package com.coolvetclinicpumb.vetclinicapp.controller;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.coolvetclinicpumb.vetclinicapp.dto.UserLoginRequestDto;
+import com.coolvetclinicpumb.vetclinicapp.dto.UserLoginResponseDto;
+import com.coolvetclinicpumb.vetclinicapp.dto.UserRegistrationRequestDto;
+import com.coolvetclinicpumb.vetclinicapp.dto.UserResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mainpackage.carsharingapp.dto.UserLoginRequestDto;
-import mainpackage.carsharingapp.dto.UserLoginResponseDto;
-import mainpackage.carsharingapp.dto.UserRegistrationRequestDto;
-import mainpackage.carsharingapp.dto.UserResponseDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,7 +73,7 @@ public class AuthenticationControllerTest {
     @DisplayName("""
             Register new user
             """)
-    @Sql(scripts = {"classpath:database/users/delete-user-from-db-afret-registration.sql"
+    @Sql(scripts = {"classpath:database/users/delete-user-from-db-after-registration.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void registerUser_CorrectRegisterUser_Success() throws Exception {
         //given
