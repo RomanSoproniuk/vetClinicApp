@@ -17,7 +17,6 @@ jobs:
       - name: Build with Maven
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
         run: |
           mvn clean verify -Dspring.datasource.password=$SPRING_DATASOURCE_PASSWORD -Djwt.secret=$JWT_SECRET
